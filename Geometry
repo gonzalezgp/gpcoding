@@ -1,0 +1,13 @@
+public class Geometry{
+
+    public static void main(String[] args){
+        double c = solveHypotenuse(3, 4); //calling our method
+        System.out.println(c); 
+    }
+
+    public static double solveHypotenuse(double a, double b) {
+        double a2 = a * a;
+        double b2 = b * b;
+        return Math.sqrt(a2 + b2);
+    }
+}
