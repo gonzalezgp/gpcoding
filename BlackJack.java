@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.ArrayList;
+
 public class BlackJack{
     Player Human;
     Player Computer;
@@ -21,7 +23,8 @@ public class BlackJack{
         while(choice != 3){
             //inner loop continues while the player's are not bust and either
             //the human or the computer decides to keep hitting
-            while (!isPlayerBust() && (choice!=2 || Computer.canHit())){
+            //changed from choice !=2 to choice==1
+            while (!isPlayerBust() && (choice==1 || Computer.canHit())){
                 System.out.println("Your score is currently " + Human.score());
                 System.out.println("Your opponent is currently showing " + Computer.showFirstCard());
                 System.out.println("Your opponent currently has " + Computer.handSize() + " cards total");
@@ -32,6 +35,7 @@ public class BlackJack{
                 System.out.println("(3) Quit");
                 System.out.println("");
                 choice = keyboard.nextInt();
+                
                 if (choice == 1){
                     Human.hit(deck.dealCard());
                 }
@@ -54,6 +58,7 @@ public class BlackJack{
             Computer.hit(deck.dealCard());
             
             //sets up decisions for the next round.
+            System.out.println("====== NEW GAME ======");
             System.out.println("Your score is currently " + Human.score());
             System.out.println("Your opponent is currently showing " + Computer.showFirstCard());
             System.out.println("Your opponent currently has " + Computer.handSize() + " cards total");
@@ -64,6 +69,14 @@ public class BlackJack{
             System.out.println("(3) Quit");
             System.out.println("");
             choice = keyboard.nextInt();
+
+            //ADD section to deal again if selected or if computer can still hit
+            if (choice == 1){
+                Human.hit(deck.dealCard());
+            }
+            if (Computer.canHit()){
+                Computer.hit(deck.dealCard());
+            }
         }
     }
     
